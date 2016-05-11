@@ -9,8 +9,17 @@ import com.demensdeum.flamesteelengine.FSEScene;
 public class DCIngameScene extends FSEScene {
 
     public DCIngameScene() {
-        FSEObject demensdeumLogo = new FSEObject(R.drawable.demensdeum_logo,1,1);
-        this.addObject(demensdeumLogo);
+        DCBackground background = new DCBackground(0);
+        DCWerj werj = new DCWerj(1);
+        DCEnemy enemy = new DCEnemy(2);
+        DCPipe pipe = new DCPipe(3);
+        DCPipe pipeTwo = new DCPipe(4);
+
+        this.addObject(background);
+        this.addObject(werj);
+        this.addObject(enemy);
+        this.addObject(pipe);
+        this.addObject(pipeTwo);
     }
 
 }
