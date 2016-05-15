@@ -2,13 +2,18 @@ package com.demensdeum.demonscave;
 
 import com.demensdeum.flamesteelengine.FSEObject;
 import com.demensdeum.flamesteelengine.FSEScene;
+import com.demensdeum.flamesteelengine.FSESceneController;
 
 /**
  * Created by demensdeum on 10.05.16.
  */
 public class DCGameController {
 
-    private FSEScene scene;
+    public enum DCState {
+        ingameState
+    };
+
+    private FSESceneController currentSceneController;
     private Renderer renderer;
 
     public DCGameController(Renderer renderer) {
@@ -16,14 +21,12 @@ public class DCGameController {
     }
 
     private void showGameScene() {
-        scene = new DCIngameScene();
-        renderer.showScene(scene);
+        currentSceneController = new DCIngameSceneController();
+        renderer.switchToSceneController(currentSceneController);
     }
 
     public void startGame() {
-
         this.showGameScene();
-
     }
 
 }

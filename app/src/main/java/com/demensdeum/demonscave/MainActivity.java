@@ -1,6 +1,7 @@
 package com.demensdeum.demonscave;
 
 import android.app.ActionBar;
+import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,5 +32,11 @@ public class MainActivity extends AppCompatActivity {
 
         renderer = new Renderer(this);
         surface.setSurfaceRenderer(renderer);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        renderer.onTouchEvent(event);
+        return true;
     }
 }

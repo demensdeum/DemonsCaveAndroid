@@ -17,8 +17,6 @@ public class FSEObject extends FSEPlane {
         super(width,height,2,2);
 
         Material material = new Material();
-        //material.enableLighting(false);
-        //material.setDiffuseMethod(new DiffuseMethod.Lambert());
         material.setColor(0);
 
         Texture texture = new Texture("Texture", resourceId);
@@ -37,6 +35,10 @@ public class FSEObject extends FSEPlane {
         double y = this.getY();
 
         this.setPosition(x, y, layer);
+    }
+
+    public void step() {
+
     }
 
 }

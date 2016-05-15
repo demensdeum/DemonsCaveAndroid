@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.demensdeum.flamesteelengine.FSEObject;
 import com.demensdeum.flamesteelengine.FSEScene;
+import com.demensdeum.flamesteelengine.FSESceneController;
 
 import org.rajawali3d.cameras.Camera2D;
 import org.rajawali3d.lights.DirectionalLight;
@@ -25,6 +26,7 @@ import java.util.ListIterator;
  */
 public class Renderer extends RajawaliRenderer {
 
+    private FSESceneController currentSceneController;
     private DCGameController gameController;
     private Camera2D gameCamera;
 
@@ -71,6 +73,22 @@ public class Renderer extends RajawaliRenderer {
 
     @Override
     public void onTouchEvent(MotionEvent event) {
+        Log.v("Renderer", "motionEvent");
 
+        if (event.getActionMasked() == MotionEvent.ACTION_DOWN)
+        {
+            currentSceneController.touchEvent();
+        }
+    }
+
+    public void switchToSceneController(FSESceneController sceneController) {
+        this.showScene(sceneController.scene);
+        this.currentSceneController = sceneController;
+    }
+
+    @Override
+    public void onRender(final long elapsedTime, final double deltaTime) {
+        super.onRender(elapsedTime, deltaTime);
+        this.currentSceneController.step();
     }
 }
