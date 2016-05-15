@@ -73,7 +73,6 @@ public class Renderer extends RajawaliRenderer {
 
     @Override
     public void onTouchEvent(MotionEvent event) {
-        Log.v("Renderer", "motionEvent");
 
         if (event.getActionMasked() == MotionEvent.ACTION_DOWN)
         {
