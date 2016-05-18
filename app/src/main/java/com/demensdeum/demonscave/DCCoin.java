@@ -11,7 +11,7 @@ public class DCCoin extends FSEObject {
     final static double speed = 0.01f;
 
     public DCCoin(double layer) {
-        super(R.drawable.coin, 0.1f, 0.1f);
+        super(R.drawable.coin, 0.0425f, 0.07f);
     }
 
     private void moveLeft() {

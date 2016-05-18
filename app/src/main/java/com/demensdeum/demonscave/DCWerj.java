@@ -13,10 +13,10 @@ public class DCWerj extends FSEObject {
     private final static double kBottomBorder = -0.35;
 
     private boolean moveDown = true;
-    final static double speed = 0.01f;
+    final static double speed = 0.036f;
 
     public DCWerj(double layer) {
-        super(R.drawable.werj, 0.2f,0.1f);
+        super(R.drawable.werj, 0.15f,0.15f);
 
         this.setBlendingEnabled(true);
         this.setBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);

@@ -9,6 +9,7 @@ import java.util.ListIterator;
 public class FSESceneController {
 
     public FSEScene scene;
+    public FSESceneControllerDelegate delegate;
 
     public void step() {
 

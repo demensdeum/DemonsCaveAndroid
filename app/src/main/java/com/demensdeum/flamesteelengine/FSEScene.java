@@ -18,6 +18,7 @@ public class FSEScene {
     }
 
     public void addObject(FSEObject object) {
+        object.scene = this;
         this.getObjects().push(object);
     }
 

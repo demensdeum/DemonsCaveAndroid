@@ -13,7 +13,7 @@ public class DCPipe extends FSEObject {
     private double speed = 0.01f;
 
     public DCPipe(double layer) {
-        super(R.drawable.pipe, 0.1f, 1);
+        super(R.drawable.pipe, 0.14f, 1);
 
         this.setBlendingEnabled(true);
         this.setBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);

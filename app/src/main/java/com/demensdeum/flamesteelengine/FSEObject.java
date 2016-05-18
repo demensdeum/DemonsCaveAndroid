@@ -13,6 +13,8 @@ import org.rajawali3d.primitives.Plane;
  */
 public class FSEObject extends FSEPlane {
 
+    public FSEScene scene;
+
     public FSEObject(int resourceId, float width, float height) {
         super(width,height,2,2);
 
