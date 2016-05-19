@@ -26,8 +26,29 @@ public class DCPipe extends FSEObject {
         this.setX(x);
     }
 
+    private double generateRespawnY() {
+        boolean createFromBottom = Math.random() < 0.5;
+        double offset = Math.random();
+        if (offset > 0.5) {
+            offset = 0.5;
+        }
+
+        if (createFromBottom) {
+            return -0.2 - offset;
+        }
+        else {
+            return 0.2 + offset;
+        }
+
+    }
+
+    public void randomizeY() {
+        this.setY(this.generateRespawnY());
+    }
+
     private void respawn() {
         this.setX(1);
+        this.randomizeY();
     }
 
     private void respawnIfNeeded() {

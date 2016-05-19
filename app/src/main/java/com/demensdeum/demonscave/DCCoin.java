@@ -20,8 +20,25 @@ public class DCCoin extends FSEObject {
         this.setX(x);
     }
 
+    private double generateRespawnY() {
+        boolean createFromBottom = Math.random() < 0.5;
+        double offset = Math.random();
+        if (offset > 0.3) {
+            offset = 0.3;
+        }
+
+        if (createFromBottom) {
+            return -offset;
+        }
+        else {
+            return offset;
+        }
+
+    }
+
     private void respawn() {
         this.setX(1);
+        this.setY(this.generateRespawnY());
     }
 
     private void respawnIfNeeded() {

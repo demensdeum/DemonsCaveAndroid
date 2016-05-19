@@ -34,6 +34,7 @@ public class DCIngameScene extends FSEScene {
         DCPipe pipe = new DCPipe(4);
 
         pipe.setX(1);
+        pipe.randomizeY();
 
         return pipe;
     }
@@ -42,6 +43,7 @@ public class DCIngameScene extends FSEScene {
         DCPipe pipe = new DCPipe(3);
 
         pipe.setX(2);
+        pipe.randomizeY();
 
         return pipe;
     }
