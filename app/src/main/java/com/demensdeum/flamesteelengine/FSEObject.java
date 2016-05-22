@@ -30,6 +30,8 @@ public class FSEObject extends FSEPlane {
         }
 
         this.setMaterial(material);
+
+        this.setTransparent(true);
     }
 
     public void setLayer(double layer) {

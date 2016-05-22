@@ -10,7 +10,7 @@ public class DCCoin extends FSEObject {
     private double kLeftBorder = -0.9f;
     final static double speed = 0.01f;
 
-    public DCCoin(double layer) {
+    public DCCoin() {
         super(R.drawable.coin, 0.0425f, 0.07f);
     }
 

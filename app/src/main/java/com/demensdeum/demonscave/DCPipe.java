@@ -12,12 +12,8 @@ public class DCPipe extends FSEObject {
     private double kLeftBorder = -0.9f;
     private double speed = 0.01f;
 
-    public DCPipe(double layer) {
+    public DCPipe() {
         super(R.drawable.pipe, 0.14f, 1);
-
-        this.setBlendingEnabled(true);
-        this.setBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-
     }
 
     private void moveLeft() {
@@ -29,15 +25,15 @@ public class DCPipe extends FSEObject {
     private double generateRespawnY() {
         boolean createFromBottom = Math.random() < 0.5;
         double offset = Math.random();
-        if (offset > 0.5) {
-            offset = 0.5;
+        if (offset > 0.2) {
+            offset = 0.2;
         }
 
         if (createFromBottom) {
-            return -0.2 - offset;
+            return -0.5 + offset;
         }
         else {
-            return 0.2 + offset;
+            return 0.5 - offset;
         }
 
     }

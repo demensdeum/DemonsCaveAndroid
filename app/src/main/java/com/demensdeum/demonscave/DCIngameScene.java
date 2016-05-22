@@ -11,19 +11,19 @@ public class DCIngameScene extends FSEScene {
     private DCWerj werj;
 
     public DCIngameScene() {
-        DCBackground background = new DCBackground(0);
+        DCBackground background = new DCBackground();
         werj = allocateWerj();
         DCEnemy enemy = allocateEnemy();
         DCPipe pipe = allocatePipe();
         DCPipe pipeTwo = allocatePipeTwo();
         DCCoin coin = allocateCoin();
 
-        addObject(background);
-        addObject(werj);
-        addObject(enemy);
         addObject(pipe);
+        addObject(werj);
         addObject(pipeTwo);
+        addObject(enemy);
         addObject(coin);
+        addObject(background);
     }
 
     public DCWerj getWerj() {
@@ -31,7 +31,7 @@ public class DCIngameScene extends FSEScene {
     }
 
     private DCPipe allocatePipeTwo() {
-        DCPipe pipe = new DCPipe(4);
+        DCPipe pipe = new DCPipe();
 
         pipe.setX(1);
         pipe.randomizeY();
@@ -40,7 +40,7 @@ public class DCIngameScene extends FSEScene {
     }
 
     private DCPipe allocatePipe() {
-        DCPipe pipe = new DCPipe(3);
+        DCPipe pipe = new DCPipe();
 
         pipe.setX(2);
         pipe.randomizeY();
@@ -49,7 +49,7 @@ public class DCIngameScene extends FSEScene {
     }
 
     private DCWerj allocateWerj() {
-        DCWerj werj = new DCWerj(2);
+        DCWerj werj = new DCWerj();
 
         werj.setX(-0.35);
         werj.setY(0.35);
@@ -58,7 +58,7 @@ public class DCIngameScene extends FSEScene {
     }
 
     private DCEnemy allocateEnemy() {
-        DCEnemy enemy = new DCEnemy(2);
+        DCEnemy enemy = new DCEnemy();
 
         enemy.setX(0.35);
         enemy.setY(0.35);
@@ -67,7 +67,7 @@ public class DCIngameScene extends FSEScene {
     }
 
     private DCCoin allocateCoin() {
-        DCCoin coin = new DCCoin(5);
+        DCCoin coin = new DCCoin();
 
         coin.setX(1.5);
         coin.setY(0);

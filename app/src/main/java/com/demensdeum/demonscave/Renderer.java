@@ -37,6 +37,7 @@ public class Renderer extends RajawaliRenderer {
 
     private void initializeCamera() {
         gameCamera = new Camera2D();
+        gameCamera.setZ(100);
 
         getCurrentScene().addCamera(gameCamera);
         getCurrentScene().switchCamera(gameCamera);

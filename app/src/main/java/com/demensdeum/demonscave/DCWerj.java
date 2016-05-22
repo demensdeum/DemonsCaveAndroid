@@ -15,12 +15,8 @@ public class DCWerj extends FSEObject {
     private boolean moveDown = true;
     final static double speed = 0.036f;
 
-    public DCWerj(double layer) {
+    public DCWerj() {
         super(R.drawable.werj, 0.15f,0.15f);
-
-        this.setBlendingEnabled(true);
-        this.setBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-        this.setLayer(layer);
     }
 
     private void moveDown() {
