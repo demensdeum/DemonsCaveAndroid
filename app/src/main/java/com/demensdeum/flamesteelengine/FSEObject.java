@@ -14,9 +14,27 @@ import org.rajawali3d.primitives.Plane;
 public class FSEObject extends FSEPlane {
 
     public FSEScene scene;
+    private double width;
+    private double height;
+
+    public int collisionIdentifier = -1;
+    protected boolean isCollides = true;
+
+    public double getWidth()
+    {
+        return width;
+    }
+
+    public double getHeight()
+    {
+        return height;
+    }
 
     public FSEObject(int resourceId, float width, float height) {
         super(width,height,2,2);
+
+        this.width = width;
+        this.height = height;
 
         Material material = new Material();
         material.setColor(0);

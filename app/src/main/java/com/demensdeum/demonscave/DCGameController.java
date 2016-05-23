@@ -1,7 +1,5 @@
 package com.demensdeum.demonscave;
 
-import com.demensdeum.flamesteelengine.FSEObject;
-import com.demensdeum.flamesteelengine.FSEScene;
 import com.demensdeum.flamesteelengine.FSESceneController;
 import com.demensdeum.flamesteelengine.FSESceneControllerDelegate;
 
@@ -11,10 +9,11 @@ import com.demensdeum.flamesteelengine.FSESceneControllerDelegate;
 public class DCGameController implements FSESceneControllerDelegate {
 
     public enum DCState {
-        demensdeumLogoState,
-        flameSteelEngineLogoState,
-        startGameScreenState,
-        ingameState,
+        demensdeumLogo,
+        flameSteelEngineLogo,
+        start,
+        ingame,
+        gameOver
     };
 
     private DCState currentState;
@@ -34,34 +33,43 @@ public class DCGameController implements FSESceneControllerDelegate {
     private void switchStateTo(DCState state) {
         currentState = state;
 
-        if (state == DCState.demensdeumLogoState) {
+        if (state == DCState.demensdeumLogo) {
             switchCurrentSceneControllerTo(new DCDemensdeumLogoSceneController());
         }
-        else if (state == DCState.flameSteelEngineLogoState) {
+        else if (state == DCState.flameSteelEngineLogo) {
             switchCurrentSceneControllerTo(new DCFlameSteelEngineLogoController());
         }
-        else if (state == DCState.startGameScreenState) {
+        else if (state == DCState.start) {
             switchCurrentSceneControllerTo(new DCStartGameScreenSceneController());
         }
-        else if (state == DCState.ingameState) {
+        else if (state == DCState.ingame) {
             switchCurrentSceneControllerTo(new DCIngameSceneController());
+        }
+        else if (state == DCState.gameOver) {
+            switchCurrentSceneControllerTo(new DCGameOverSceneController());
         }
     }
 
     public void startGame() {
-        this.switchStateTo(DCState.demensdeumLogoState);
+        this.switchStateTo(DCState.demensdeumLogo);
     }
 
     @Override
     public void sceneControllerDidEnd(FSESceneController controller) {
-        if (currentState == DCState.demensdeumLogoState) {
-            switchStateTo(DCState.flameSteelEngineLogoState);
+        if (currentState == DCState.demensdeumLogo) {
+            switchStateTo(DCState.flameSteelEngineLogo);
         }
-        else if (currentState == DCState.flameSteelEngineLogoState) {
-            switchStateTo(DCState.startGameScreenState);
+        else if (currentState == DCState.flameSteelEngineLogo) {
+            switchStateTo(DCState.start);
         }
-        else if (currentState == DCState.startGameScreenState) {
-            switchStateTo(DCState.ingameState);
+        else if (currentState == DCState.start) {
+            switchStateTo(DCState.ingame);
+        }
+        else if (currentState == DCState.ingame) {
+            switchStateTo(DCState.gameOver);
+        }
+        else if (currentState == DCState.gameOver) {
+            switchStateTo(DCState.ingame);
         }
     }
 

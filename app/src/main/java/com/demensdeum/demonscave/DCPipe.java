@@ -14,6 +14,7 @@ public class DCPipe extends FSEObject {
 
     public DCPipe() {
         super(R.drawable.pipe, 0.14f, 1);
+        this.collisionIdentifier = DCCollisionIdentifiers.Pipe.ordinal();
     }
 
     private void moveLeft() {

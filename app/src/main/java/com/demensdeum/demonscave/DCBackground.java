@@ -11,6 +11,8 @@ public class DCBackground extends FSEObject {
 
     public DCBackground() {
         super(R.drawable.background,1,1);
+
+        this.isCollides = false;
     }
 
 }

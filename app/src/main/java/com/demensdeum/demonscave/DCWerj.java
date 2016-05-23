@@ -17,6 +17,7 @@ public class DCWerj extends FSEObject {
 
     public DCWerj() {
         super(R.drawable.werj, 0.15f,0.15f);
+        this.collisionIdentifier = DCCollisionIdentifiers.Werj.ordinal();
     }
 
     private void moveDown() {
