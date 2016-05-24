@@ -2,12 +2,27 @@ package com.demensdeum.flamesteelengine;
 
 import android.util.Log;
 
+import org.rajawali3d.bounds.BoundingBox;
+import org.rajawali3d.math.vector.Vector3;
+
 import java.util.LinkedList;
 import java.util.ListIterator;
 
 /**
  * Created by demensdeum on 23.05.16.
  */
+
+class FSECollisionDot {
+    public double x;
+    public double y;
+
+    FSECollisionDot(double x,double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+}
+
 public class FSECollisionDetectionController {
 
     public LinkedList<FSEObject> objects;
@@ -33,21 +48,24 @@ public class FSECollisionDetectionController {
         }
     }
 
+    private boolean boxesIntersects(BoundingBox boxA, BoundingBox boundingVolume) {
+
+        BoundingBox boundingBox = (BoundingBox)boundingVolume;
+        Vector3 otherMin = boundingBox.getTransformedMin();
+        Vector3 otherMax = boundingBox.getTransformedMax();
+        Vector3 min = boxA.getTransformedMin();
+        Vector3 max = boxA.getTransformedMax();
+
+        return (min.x < otherMax.x) && (max.x > otherMin.x) &&
+                (min.y < otherMax.y) && (max.y > otherMin.y);
+    }
+
     private void triggerEventIfBodyCollidesWithBody(FSEObject bodyA, FSEObject bodyB) {
-        double bodyAx = bodyA.getX();
-        double bodyAy = bodyA.getY();
-        double bodyAwidth = bodyA.getWidth();
-        double bodyAheight = bodyA.getHeight();
 
-        double bodyBx = bodyB.getX();
-        double bodyBy = bodyB.getY();
-        double bodyBwidth = bodyB.getWidth();
-        double bodyBheight = bodyB.getHeight();
+        BoundingBox boxA = bodyA.getGeometry().getBoundingBox();
+        BoundingBox boxB = bodyB.getGeometry().getBoundingBox();
 
-        if (bodyAx < bodyBx + bodyBwidth &&
-                bodyAx + bodyAwidth > bodyBx &&
-                bodyAy < bodyBy + bodyBheight &&
-                bodyAheight + bodyAy > bodyBy)
+        if (boxesIntersects(boxA,boxB))
         {
             delegate.collisionDetectionControllerDidFoundCollisionBetween(bodyA,bodyB);
         }

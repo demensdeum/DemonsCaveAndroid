@@ -11,6 +11,7 @@ import com.demensdeum.flamesteelengine.FSESceneController;
 public class DCIngameSceneController extends FSESceneController implements FSECollisionDetectionControllerDelegate {
 
     private FSECollisionDetectionController collisionDetectionController;
+    private DCEnemyController enemyController;
 
     DCIngameSceneController() {
         scene = new DCIngameScene();
@@ -18,6 +19,8 @@ public class DCIngameSceneController extends FSESceneController implements FSECo
         collisionDetectionController = new FSECollisionDetectionController();
         collisionDetectionController.objects = scene.getObjects();
         collisionDetectionController.delegate = this;
+
+        enemyController = new DCEnemyController((DCIngameScene)scene);
     }
 
     public void touchEvent() {
@@ -27,10 +30,15 @@ public class DCIngameSceneController extends FSESceneController implements FSECo
     public void step() {
         super.step();
         collisionDetectionController.step();
+        enemyController.step();
     }
 
     private void explosionAnimation() {
         this.delegate.sceneControllerDidEnd(this);
+    }
+
+    private void pickupCoin(DCCoin coin) {
+        coin.setVisible(false);
     }
 
     @Override
@@ -40,6 +48,12 @@ public class DCIngameSceneController extends FSESceneController implements FSECo
                 bodyB.collisionIdentifier == DCCollisionIdentifiers.Pipe.ordinal())
         {
             this.explosionAnimation();
+        }
+
+        if (bodyA.collisionIdentifier == DCCollisionIdentifiers.Werj.ordinal() &&
+                bodyB.collisionIdentifier == DCCollisionIdentifiers.Coin.ordinal())
+        {
+            this.pickupCoin((DCCoin)bodyB);
         }
     }
 }

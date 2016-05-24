@@ -12,6 +12,7 @@ public class DCCoin extends FSEObject {
 
     public DCCoin() {
         super(R.drawable.coin, 0.0425f, 0.07f);
+        this.collisionIdentifier = DCCollisionIdentifiers.Coin.ordinal();
     }
 
     private void moveLeft() {
@@ -39,6 +40,7 @@ public class DCCoin extends FSEObject {
     private void respawn() {
         this.setX(1);
         this.setY(this.generateRespawnY());
+        this.setVisible(true);
     }
 
     private void respawnIfNeeded() {

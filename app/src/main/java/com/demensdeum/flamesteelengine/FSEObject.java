@@ -63,4 +63,20 @@ public class FSEObject extends FSEPlane {
 
     }
 
+    public double getCollisionX() {
+        return super.getX();
+    }
+
+    public double getCollisionY() {
+        return super.getY();
+    }
+
+    public double getCollisionWidth() {
+        return width;
+    }
+
+    public double getCollisionHeight() {
+        return height;
+    }
+
 }

@@ -9,6 +9,9 @@ import com.demensdeum.flamesteelengine.FSEScene;
 public class DCIngameScene extends FSEScene {
 
     private DCWerj werj;
+    private DCEnemy enemy;
+    private DCPipe pipeOne;
+    private DCPipe pipeTwo;
 
     public DCIngameScene() {
         DCBackground background = new DCBackground();
@@ -24,6 +27,22 @@ public class DCIngameScene extends FSEScene {
         addObject(enemy);
         addObject(coin);
         addObject(background);
+
+        this.enemy = enemy;
+        this.pipeOne = pipe;
+        this.pipeTwo = pipeTwo;
+    }
+
+    public DCEnemy getEnemy() {
+        return enemy;
+    }
+
+    public DCPipe getPipeOne() {
+        return pipeOne;
+    }
+
+    public DCPipe getPipeTwo() {
+        return pipeTwo;
     }
 
     public DCWerj getWerj() {
@@ -34,7 +53,7 @@ public class DCIngameScene extends FSEScene {
         DCPipe pipe = new DCPipe();
 
         pipe.setX(1);
-        pipe.randomizeY();
+        pipe.setY(0.5);
 
         return pipe;
     }
@@ -43,7 +62,7 @@ public class DCIngameScene extends FSEScene {
         DCPipe pipe = new DCPipe();
 
         pipe.setX(2);
-        pipe.randomizeY();
+        pipe.setY(0.5);
 
         return pipe;
     }
@@ -60,7 +79,7 @@ public class DCIngameScene extends FSEScene {
     private DCEnemy allocateEnemy() {
         DCEnemy enemy = new DCEnemy();
 
-        enemy.setX(0.35);
+        enemy.setX(0.15);
         enemy.setY(0.35);
 
         return enemy;
