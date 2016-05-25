@@ -6,5 +6,6 @@ package com.demensdeum.demonscave;
 public enum DCCollisionIdentifiers {
     Werj,
     Coin,
+    Enemy,
     Pipe
 }

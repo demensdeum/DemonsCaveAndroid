@@ -17,6 +17,10 @@ public class DCPipe extends FSEObject {
         this.collisionIdentifier = DCCollisionIdentifiers.Pipe.ordinal();
     }
 
+    public void setSpeed(double newSpeed) {
+        this.speed = newSpeed;
+    }
+
     private void moveLeft() {
         double x = this.getX();
         x -= speed;

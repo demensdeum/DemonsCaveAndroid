@@ -12,17 +12,6 @@ import java.util.ListIterator;
  * Created by demensdeum on 23.05.16.
  */
 
-class FSECollisionDot {
-    public double x;
-    public double y;
-
-    FSECollisionDot(double x,double y) {
-        this.x = x;
-        this.y = y;
-    }
-
-}
-
 public class FSECollisionDetectionController {
 
     public LinkedList<FSEObject> objects;

@@ -12,15 +12,22 @@ public class DCIngameSceneController extends FSESceneController implements FSECo
 
     private FSECollisionDetectionController collisionDetectionController;
     private DCEnemyController enemyController;
+    private DCIngameScene ingameScene;
+
+    private boolean explosionAnimation = false;
+    private int explosionAnimationTick = 0;
+
+    private final int kExplosionAnimationEndTick = 24;
 
     DCIngameSceneController() {
         scene = new DCIngameScene();
+        ingameScene = (DCIngameScene)scene;
 
         collisionDetectionController = new FSECollisionDetectionController();
         collisionDetectionController.objects = scene.getObjects();
         collisionDetectionController.delegate = this;
 
-        enemyController = new DCEnemyController((DCIngameScene)scene);
+        enemyController = new DCEnemyController(ingameScene);
     }
 
     public void touchEvent() {
@@ -31,18 +38,49 @@ public class DCIngameSceneController extends FSESceneController implements FSECo
         super.step();
         collisionDetectionController.step();
         enemyController.step();
+
+        if (explosionAnimation) {
+            explosionAnimationTick++;
+            if (explosionAnimationTick >= kExplosionAnimationEndTick) {
+                this.delegate.sceneControllerDidEnd(this);
+            }
+        }
     }
 
     private void explosionAnimation() {
-        this.delegate.sceneControllerDidEnd(this);
+        double x = ingameScene.getWerj().getX();
+        double y = ingameScene.getWerj().getY();
+
+        DCExplosion explosion = ingameScene.getExplosion();
+        explosion.setX(x);
+        explosion.setY(y);
+        explosion.setVisible(true);
+        explosion.playAnimation();
+
+        ingameScene.getPipeOne().setSpeed(0);
+        ingameScene.getPipeTwo().setSpeed(0);
+        ingameScene.getCoin().setSpeed(0);
+
+        ingameScene.getWerj().setVisible(false);
+
+        explosionAnimation = true;
     }
 
     private void pickupCoin(DCCoin coin) {
         coin.setVisible(false);
     }
 
+    private void pickupCoinByEnemy(DCCoin coin) {
+        coin.setVisible(false);
+    }
+
     @Override
     public void collisionDetectionControllerDidFoundCollisionBetween(FSEObject bodyA, FSEObject bodyB) {
+
+        if (explosionAnimation)
+        {
+            return;
+        }
 
         if (bodyA.collisionIdentifier == DCCollisionIdentifiers.Werj.ordinal() &&
                 bodyB.collisionIdentifier == DCCollisionIdentifiers.Pipe.ordinal())
@@ -54,6 +92,12 @@ public class DCIngameSceneController extends FSESceneController implements FSECo
                 bodyB.collisionIdentifier == DCCollisionIdentifiers.Coin.ordinal())
         {
             this.pickupCoin((DCCoin)bodyB);
+        }
+
+        if (bodyA.collisionIdentifier == DCCollisionIdentifiers.Enemy.ordinal() &&
+                bodyB.collisionIdentifier == DCCollisionIdentifiers.Coin.ordinal())
+        {
+            this.pickupCoinByEnemy((DCCoin)bodyB);
         }
     }
 }

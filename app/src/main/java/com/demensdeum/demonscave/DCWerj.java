@@ -26,8 +26,8 @@ public class DCWerj extends FSEObject {
 
     private void initializeAnimation() {
         SpriteSheetMaterialPlugin spriteSheetMaterialPlugin = new SpriteSheetMaterialPlugin(4, 1, 10, 4);
-        spriteSheetMaterialPlugin.play();
         this.getMaterial().addPlugin(spriteSheetMaterialPlugin);
+        spriteSheetMaterialPlugin.play();
     }
 
     private void moveDown() {

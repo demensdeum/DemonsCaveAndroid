@@ -9,13 +9,19 @@ import org.rajawali3d.materials.plugins.SpriteSheetMaterialPlugin;
  */
 public class DCExplosion extends FSEObject {
 
+    private SpriteSheetMaterialPlugin spriteSheetMaterialPlugin;
+
     public DCExplosion() {
-        super(R.drawable.explosion,1,1);
+        super(R.drawable.explosion,0.32f,0.53f);
 
-        SpriteSheetMaterialPlugin spriteSheetMaterialPlugin = new SpriteSheetMaterialPlugin(5, 1, 4, 5);
-        spriteSheetMaterialPlugin.play();
+        SpriteSheetMaterialPlugin spriteSheetMaterialPlugin = new SpriteSheetMaterialPlugin(5, 1, 12, 5);
         this.getMaterial().addPlugin(spriteSheetMaterialPlugin);
+        this.spriteSheetMaterialPlugin = spriteSheetMaterialPlugin;
 
+    }
+
+    public void playAnimation() {
+        spriteSheetMaterialPlugin.play();
     }
 
 }

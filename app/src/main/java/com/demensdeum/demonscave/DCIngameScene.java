@@ -12,6 +12,8 @@ public class DCIngameScene extends FSEScene {
     private DCEnemy enemy;
     private DCPipe pipeOne;
     private DCPipe pipeTwo;
+    private DCExplosion explosion;
+    private DCCoin coin;
 
     public DCIngameScene() {
         DCBackground background = new DCBackground();
@@ -22,7 +24,7 @@ public class DCIngameScene extends FSEScene {
         DCCoin coin = allocateCoin();
         DCExplosion explosion = new DCExplosion();
 
-        //addObject(explosion);
+        addObject(explosion);
         addObject(werj);
         addObject(pipe);
         addObject(pipeTwo);
@@ -33,7 +35,12 @@ public class DCIngameScene extends FSEScene {
         this.enemy = enemy;
         this.pipeOne = pipe;
         this.pipeTwo = pipeTwo;
+        this.explosion = explosion;
+        this.explosion.setVisible(false);
+        this.coin = coin;
     }
+
+    public DCExplosion getExplosion() { return explosion; }
 
     public DCEnemy getEnemy() {
         return enemy;
@@ -46,6 +53,8 @@ public class DCIngameScene extends FSEScene {
     public DCPipe getPipeTwo() {
         return pipeTwo;
     }
+
+    public DCCoin getCoin() { return coin; }
 
     public DCWerj getWerj() {
         return werj;

@@ -10,13 +10,17 @@ import org.rajawali3d.materials.plugins.SpriteSheetMaterialPlugin;
 public class DCCoin extends FSEObject {
 
     private double kLeftBorder = -0.9f;
-    final static double speed = 0.01f;
+    static double speed = 0.01f;
 
     public DCCoin() {
         super(R.drawable.coin, 0.0425f, 0.07f);
         this.collisionIdentifier = DCCollisionIdentifiers.Coin.ordinal();
 
         initializeAnimation();
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
     }
 
     private void initializeAnimation() {
