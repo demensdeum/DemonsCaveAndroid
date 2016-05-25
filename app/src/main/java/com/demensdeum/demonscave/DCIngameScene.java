@@ -20,9 +20,11 @@ public class DCIngameScene extends FSEScene {
         DCPipe pipe = allocatePipe();
         DCPipe pipeTwo = allocatePipeTwo();
         DCCoin coin = allocateCoin();
+        DCExplosion explosion = new DCExplosion();
 
-        addObject(pipe);
+        //addObject(explosion);
         addObject(werj);
+        addObject(pipe);
         addObject(pipeTwo);
         addObject(enemy);
         addObject(coin);

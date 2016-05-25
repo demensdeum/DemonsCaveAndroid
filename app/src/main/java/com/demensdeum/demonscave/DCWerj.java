@@ -4,6 +4,8 @@ import android.opengl.GLES20;
 
 import com.demensdeum.flamesteelengine.FSEObject;
 
+import org.rajawali3d.materials.plugins.SpriteSheetMaterialPlugin;
+
 /**
  * Created by demensdeum on 11.05.16.
  */
@@ -18,6 +20,14 @@ public class DCWerj extends FSEObject {
     public DCWerj() {
         super(R.drawable.werj, 0.15f,0.15f);
         this.collisionIdentifier = DCCollisionIdentifiers.Werj.ordinal();
+
+        initializeAnimation();
+    }
+
+    private void initializeAnimation() {
+        SpriteSheetMaterialPlugin spriteSheetMaterialPlugin = new SpriteSheetMaterialPlugin(4, 1, 10, 4);
+        spriteSheetMaterialPlugin.play();
+        this.getMaterial().addPlugin(spriteSheetMaterialPlugin);
     }
 
     private void moveDown() {

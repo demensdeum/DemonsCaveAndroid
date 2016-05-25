@@ -4,6 +4,8 @@ import android.opengl.GLES20;
 
 import com.demensdeum.flamesteelengine.FSEObject;
 
+import org.rajawali3d.materials.plugins.SpriteSheetMaterialPlugin;
+
 /**
  * Created by demensdeum on 11.05.16.
  */
@@ -17,6 +19,14 @@ public class DCEnemy extends FSEObject {
 
     public DCEnemy() {
         super(R.drawable.enemy, 0.178f,0.25f);
+
+        initializeAnimation();
+    }
+
+    private void initializeAnimation() {
+        SpriteSheetMaterialPlugin spriteSheetMaterialPlugin = new SpriteSheetMaterialPlugin(9, 1, 10, 9);
+        spriteSheetMaterialPlugin.play();
+        this.getMaterial().addPlugin(spriteSheetMaterialPlugin);
     }
 
     private void moveDown() {

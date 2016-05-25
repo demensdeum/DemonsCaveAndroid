@@ -2,6 +2,8 @@ package com.demensdeum.demonscave;
 
 import com.demensdeum.flamesteelengine.FSEObject;
 
+import org.rajawali3d.materials.plugins.SpriteSheetMaterialPlugin;
+
 /**
  * Created by demensdeum on 15.05.16.
  */
@@ -13,6 +15,14 @@ public class DCCoin extends FSEObject {
     public DCCoin() {
         super(R.drawable.coin, 0.0425f, 0.07f);
         this.collisionIdentifier = DCCollisionIdentifiers.Coin.ordinal();
+
+        initializeAnimation();
+    }
+
+    private void initializeAnimation() {
+        SpriteSheetMaterialPlugin spriteSheetMaterialPlugin = new SpriteSheetMaterialPlugin(5, 1, 10, 5);
+        spriteSheetMaterialPlugin.play();
+        this.getMaterial().addPlugin(spriteSheetMaterialPlugin);
     }
 
     private void moveLeft() {
