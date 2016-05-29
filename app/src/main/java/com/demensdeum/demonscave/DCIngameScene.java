@@ -23,7 +23,11 @@ public class DCIngameScene extends FSEScene {
         DCPipe pipeTwo = allocatePipeTwo();
         DCCoin coin = allocateCoin();
         DCExplosion explosion = new DCExplosion();
+        DCSpeedupContainer speedupContainer = allocateSpeedupContainer();
+        DCSpeedupBar speedupBar = allocateSpeedupBar();
 
+        //addObject(speedupBar);
+        //addObject(speedupContainer);
         addObject(explosion);
         addObject(werj);
         addObject(pipe);
@@ -38,6 +42,24 @@ public class DCIngameScene extends FSEScene {
         this.explosion = explosion;
         this.explosion.setVisible(false);
         this.coin = coin;
+    }
+
+    public DCSpeedupContainer allocateSpeedupContainer()
+    {
+        DCSpeedupContainer speedupContainer = new DCSpeedupContainer();
+        speedupContainer.setX(-0.3f);
+        speedupContainer.setY(-0.45f);
+
+        return speedupContainer;
+    }
+
+    public DCSpeedupBar allocateSpeedupBar()
+    {
+        DCSpeedupBar speedupBar = new DCSpeedupBar();
+        speedupBar.setX(-0.3f);
+        speedupBar.setY(-0.45f);
+
+        return speedupBar;
     }
 
     public DCExplosion getExplosion() { return explosion; }

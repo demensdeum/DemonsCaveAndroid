@@ -19,6 +19,9 @@ public class DCIngameSceneController extends FSESceneController implements FSECo
 
     private final int kExplosionAnimationEndTick = 24;
 
+    private int speedUpTick = 0;
+    final private int speedUpMaxTick = 100;
+
     DCIngameSceneController() {
         scene = new DCIngameScene();
         ingameScene = (DCIngameScene)scene;
@@ -34,17 +37,36 @@ public class DCIngameSceneController extends FSESceneController implements FSECo
         ((DCIngameScene)scene).getWerj().switchDirection();
     }
 
-    public void step() {
-        super.step();
-        collisionDetectionController.step();
-        enemyController.step();
-
+    private void explosionAnimationStep() {
         if (explosionAnimation) {
             explosionAnimationTick++;
             if (explosionAnimationTick >= kExplosionAnimationEndTick) {
                 this.delegate.sceneControllerDidEnd(this);
             }
         }
+    }
+
+    private void applySpeedUp() {
+        ingameScene.getPipeOne().applySpeedUp();
+        ingameScene.getPipeTwo().applySpeedUp();
+        ingameScene.getCoin().applySpeedUp();
+    }
+
+    private void speedUpStep() {
+        speedUpTick++;
+        if (speedUpTick >= speedUpMaxTick)
+        {
+            speedUpTick = 0;
+            this.applySpeedUp();
+        }
+    }
+
+    public void step() {
+        super.step();
+        collisionDetectionController.step();
+        enemyController.step();
+        explosionAnimationStep();
+        speedUpStep();
     }
 
     private void explosionAnimation() {

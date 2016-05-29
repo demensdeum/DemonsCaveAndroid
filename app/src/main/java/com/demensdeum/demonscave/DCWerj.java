@@ -15,7 +15,7 @@ public class DCWerj extends FSEObject {
     private final static double kBottomBorder = -0.35;
 
     private boolean moveDown = true;
-    final static double speed = 0.036f;
+    final static double speed = 0.06f;
 
     public DCWerj() {
         super(R.drawable.werj, 0.15f,0.15f);
@@ -27,6 +27,8 @@ public class DCWerj extends FSEObject {
     private void initializeAnimation() {
         SpriteSheetMaterialPlugin spriteSheetMaterialPlugin = new SpriteSheetMaterialPlugin(4, 1, 10, 4);
         this.getMaterial().addPlugin(spriteSheetMaterialPlugin);
+        spriteSheetMaterialPlugin.play();
+        spriteSheetMaterialPlugin.pause();
         spriteSheetMaterialPlugin.play();
     }
 

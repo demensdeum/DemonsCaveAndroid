@@ -14,19 +14,22 @@ public class DCEnemy extends FSEObject {
     private final static double kTopBorder = 0.35;
     private final static double kBottomBorder = -0.35;
 
-    final static double speed = 0.036f;
+    final static double speed = 0.06f;
     public boolean moveDown = true;
 
     public DCEnemy() {
         super(R.drawable.enemy, 0.178f,0.25f);
+        this.collisionIdentifier = DCCollisionIdentifiers.Enemy.ordinal();
 
         initializeAnimation();
     }
 
     private void initializeAnimation() {
         SpriteSheetMaterialPlugin spriteSheetMaterialPlugin = new SpriteSheetMaterialPlugin(9, 1, 10, 9);
-        spriteSheetMaterialPlugin.play();
         this.getMaterial().addPlugin(spriteSheetMaterialPlugin);
+        spriteSheetMaterialPlugin.play();
+        spriteSheetMaterialPlugin.pause();
+        spriteSheetMaterialPlugin.play();
     }
 
     private void moveDown() {
