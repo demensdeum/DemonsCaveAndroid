@@ -7,6 +7,7 @@ import java.util.LinkedList;
  */
 public class FSEScene {
 
+    public FSESceneController sceneController;
     private LinkedList<FSEObject> objects;
 
     public LinkedList<FSEObject> getObjects() {
@@ -22,4 +23,11 @@ public class FSEScene {
         this.getObjects().push(object);
     }
 
+    public void prepareToShow() {
+
+    }
+
+    public void handleEvent(FSEEvent event) {
+        this.sceneController.handleEvent(event);
+    }
 }

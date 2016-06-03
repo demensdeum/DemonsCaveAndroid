@@ -2,7 +2,9 @@ package com.demensdeum.demonscave;
 
 import com.demensdeum.flamesteelengine.FSECollisionDetectionController;
 import com.demensdeum.flamesteelengine.FSECollisionDetectionControllerDelegate;
+import com.demensdeum.flamesteelengine.FSEEvent;
 import com.demensdeum.flamesteelengine.FSEObject;
+import com.demensdeum.flamesteelengine.FSEScene;
 import com.demensdeum.flamesteelengine.FSESceneController;
 
 /**
@@ -23,7 +25,9 @@ public class DCIngameSceneController extends FSESceneController implements FSECo
     final private int speedUpMaxTick = 100;
 
     DCIngameSceneController() {
-        scene = new DCIngameScene();
+        FSEScene scene = new DCIngameScene();
+        this.setScene(scene);
+
         ingameScene = (DCIngameScene)scene;
 
         collisionDetectionController = new FSECollisionDetectionController();
@@ -34,6 +38,7 @@ public class DCIngameSceneController extends FSESceneController implements FSECo
     }
 
     public void touchEvent() {
+        FSEScene scene = this.getScene();
         ((DCIngameScene)scene).getWerj().switchDirection();
     }
 
@@ -89,7 +94,11 @@ public class DCIngameSceneController extends FSESceneController implements FSECo
     }
 
     private void pickupCoin(DCCoin coin) {
-        coin.setVisible(false);
+        if (coin.isVisible()) {
+            coin.setVisible(false);
+
+            this.scoreController.addScore(100);
+        }
     }
 
     private void pickupCoinByEnemy(DCCoin coin) {
@@ -120,6 +129,17 @@ public class DCIngameSceneController extends FSESceneController implements FSECo
                 bodyB.collisionIdentifier == DCCollisionIdentifiers.Coin.ordinal())
         {
             this.pickupCoinByEnemy((DCCoin)bodyB);
+        }
+    }
+
+    public void handleEvent(FSEEvent event) {
+        switch (event) {
+            case PipeRespawn:
+                this.scoreController.addScore(1);
+                break;
+
+            default:
+                break;
         }
     }
 }

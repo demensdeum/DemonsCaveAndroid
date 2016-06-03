@@ -15,7 +15,7 @@ public class FSEGameScoreController {
         return score;
     }
 
-    private void reset() {
+    public void reset() {
         score = 0;
     }
 

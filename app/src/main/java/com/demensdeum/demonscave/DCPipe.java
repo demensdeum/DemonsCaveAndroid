@@ -2,6 +2,7 @@ package com.demensdeum.demonscave;
 
 import android.opengl.GLES20;
 
+import com.demensdeum.flamesteelengine.FSEEvent;
 import com.demensdeum.flamesteelengine.FSEObject;
 
 /**
@@ -54,6 +55,8 @@ public class DCPipe extends FSEObject {
     private void respawn() {
         this.setX(1);
         this.randomizeY();
+
+        this.sendEvent(FSEEvent.PipeRespawn);
     }
 
     private void respawnIfNeeded() {

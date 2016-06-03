@@ -8,8 +8,22 @@ import java.util.ListIterator;
  */
 public class FSESceneController {
 
-    public FSEScene scene;
+    private FSEScene scene;
     public FSESceneControllerDelegate delegate;
+    public FSEGameScoreController scoreController;
+
+    public void setScene(FSEScene scene) {
+        this.scene = scene;
+        this.scene.sceneController = this;
+    }
+
+    public FSEScene getScene() {
+        return this.scene;
+    }
+
+    public void prepareToShow() {
+        this.scene.prepareToShow();
+    }
 
     public void step() {
 
@@ -24,6 +38,10 @@ public class FSESceneController {
     }
 
     public void touchEvent() {
+
+    }
+
+    public void handleEvent(FSEEvent event) {
 
     }
 

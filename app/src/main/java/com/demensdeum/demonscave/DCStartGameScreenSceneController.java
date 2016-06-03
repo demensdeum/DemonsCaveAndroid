@@ -8,7 +8,11 @@ import com.demensdeum.flamesteelengine.FSESceneController;
 public class DCStartGameScreenSceneController extends FSESceneController {
 
     DCStartGameScreenSceneController() {
-        scene = new DCStartGameScreenScene();
+        this.setScene(new DCStartGameScreenScene());
+    }
+
+    public void start() {
+        this.scoreController.reset();
     }
 
     public void touchEvent()

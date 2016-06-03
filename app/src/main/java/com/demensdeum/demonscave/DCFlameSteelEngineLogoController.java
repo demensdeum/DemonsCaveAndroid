@@ -1,5 +1,6 @@
 package com.demensdeum.demonscave;
 
+import com.demensdeum.flamesteelengine.FSEScene;
 import com.demensdeum.flamesteelengine.FSESceneController;
 
 /**
@@ -8,7 +9,8 @@ import com.demensdeum.flamesteelengine.FSESceneController;
 public class DCFlameSteelEngineLogoController extends DCFadeImageSceneController {
 
     public DCFlameSteelEngineLogoController() {
-        scene = new DCFlameSteelEngineLogoScene();
+        FSEScene scene = new DCFlameSteelEngineLogoScene();
+        this.setScene(scene);
     }
 
 }

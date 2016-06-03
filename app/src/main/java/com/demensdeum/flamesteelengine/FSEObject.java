@@ -18,8 +18,12 @@ public class FSEObject extends FSEPlane {
     public int collisionIdentifier = -1;
     protected boolean isCollides = true;
 
-    public FSEObject(int resourceId, float width, float height) {
+    public FSEObject(float width, float height) {
         super(width,height,2,2);
+    }
+
+    public FSEObject(int resourceId, float width, float height) {
+        super(width,height,1,1);
 
         Material material = new Material();
         material.setColor(0);
@@ -46,6 +50,10 @@ public class FSEObject extends FSEPlane {
 
     public void step() {
 
+    }
+
+    public void sendEvent(FSEEvent event) {
+        this.scene.handleEvent(event);
     }
 
 }

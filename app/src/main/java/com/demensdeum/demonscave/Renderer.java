@@ -77,12 +77,14 @@ public class Renderer extends RajawaliRenderer {
 
         if (event.getActionMasked() == MotionEvent.ACTION_DOWN)
         {
-            currentSceneController.touchEvent();
+            if (currentSceneController != null) {
+                currentSceneController.touchEvent();
+            }
         }
     }
 
     public void switchToSceneController(FSESceneController sceneController) {
-        this.showScene(sceneController.scene);
+        this.showScene(sceneController.getScene());
         this.currentSceneController = sceneController;
     }
 

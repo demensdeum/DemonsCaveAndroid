@@ -1,5 +1,6 @@
 package com.demensdeum.demonscave;
 
+import com.demensdeum.flamesteelengine.FSEGameScoreController;
 import com.demensdeum.flamesteelengine.FSESceneController;
 import com.demensdeum.flamesteelengine.FSESceneControllerDelegate;
 
@@ -19,14 +20,18 @@ public class DCGameController implements FSESceneControllerDelegate {
     private DCState currentState;
     private FSESceneController currentSceneController;
     private Renderer renderer;
+    private FSEGameScoreController gameScoreController;
 
     public DCGameController(Renderer renderer) {
         this.renderer = renderer;
+        this.gameScoreController = new FSEGameScoreController();
     }
 
     private void switchCurrentSceneControllerTo(FSESceneController sceneController) {
         currentSceneController = sceneController;
         currentSceneController.delegate = this;
+        currentSceneController.scoreController = this.gameScoreController;
+        currentSceneController.prepareToShow();
         renderer.switchToSceneController(sceneController);
     }
 

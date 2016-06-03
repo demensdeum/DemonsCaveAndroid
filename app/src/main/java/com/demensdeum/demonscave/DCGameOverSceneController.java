@@ -1,5 +1,6 @@
 package com.demensdeum.demonscave;
 
+import com.demensdeum.flamesteelengine.FSEScene;
 import com.demensdeum.flamesteelengine.FSESceneController;
 
 /**
@@ -8,7 +9,8 @@ import com.demensdeum.flamesteelengine.FSESceneController;
 public class DCGameOverSceneController extends FSESceneController {
 
     DCGameOverSceneController() {
-        scene = new DCGameOverScene();
+        FSEScene scene = new DCGameOverScene();
+        this.setScene(scene);
     }
 
     public void touchEvent()

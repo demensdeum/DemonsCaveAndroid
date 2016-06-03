@@ -20,7 +20,7 @@ public class DCFadeImageSceneController extends FSESceneController {
             this.delegate.sceneControllerDidEnd(this);
         }
 
-        LinkedList<FSEObject> objects = scene.getObjects();
+        LinkedList<FSEObject> objects = getScene().getObjects();
 
         ListIterator<FSEObject> iterator = objects.listIterator();
         while (iterator.hasNext()) {
