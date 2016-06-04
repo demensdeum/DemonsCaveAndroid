@@ -12,7 +12,7 @@ public class DCStartGameScreenSceneController extends FSESceneController {
     }
 
     public void start() {
-        this.scoreController.reset();
+
     }
 
     public void touchEvent()

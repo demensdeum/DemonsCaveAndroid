@@ -35,6 +35,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        renderer.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        renderer.onStop();
+    }
+
+    @Override
     public boolean onTouchEvent(MotionEvent event) {
         renderer.onTouchEvent(event);
         return true;

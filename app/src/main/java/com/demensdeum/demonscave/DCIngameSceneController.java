@@ -142,4 +142,8 @@ public class DCIngameSceneController extends FSESceneController implements FSECo
                 break;
         }
     }
+
+    public void prepareToShow() {
+        this.scoreController.reset();
+    }
 }

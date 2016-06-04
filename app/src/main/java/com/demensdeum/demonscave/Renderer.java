@@ -29,9 +29,11 @@ public class Renderer extends RajawaliRenderer {
     private FSESceneController currentSceneController;
     private DCGameController gameController;
     private Camera2D gameCamera;
+    private Context context;
 
     public Renderer(Context context) {
         super(context);
+        this.context = context;
         setFrameRate(60);
     }
 
@@ -44,7 +46,7 @@ public class Renderer extends RajawaliRenderer {
     }
 
     private void initializeGameController() {
-        this.gameController = new DCGameController(this);
+        this.gameController = new DCGameController(context, this);
     }
 
     public void showScene(FSEScene scene) {
@@ -55,7 +57,8 @@ public class Renderer extends RajawaliRenderer {
 
         ListIterator<FSEObject> iterator = objects.listIterator();
         while (iterator.hasNext()) {
-            getCurrentScene().addChild(iterator.next());
+            FSEObject object = iterator.next();
+            getCurrentScene().addChild(object);
         }
 
     }
@@ -92,5 +95,17 @@ public class Renderer extends RajawaliRenderer {
     public void onRender(final long elapsedTime, final double deltaTime) {
         super.onRender(elapsedTime, deltaTime);
         this.currentSceneController.step();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (this.gameController != null) {
+            this.gameController.onResume();
+        }
+    }
+
+    public void onStop() {
+        this.gameController.onStop();
     }
 }

@@ -21,8 +21,8 @@ public class DCGameOverScene extends FSEScene {
         int score = this.sceneController.scoreController.getScore();
         String scoreString = String.format("Score: %d", score);
 
-        FSEObject textPlane = FSEText.allocateText(scoreString,0.24f,0.08f);
-        textPlane.setX(-0.3);
+        FSEObject textPlane = FSEText.allocateText(scoreString,0.16f,0.08f);
+        textPlane.setX(-0.4);
         textPlane.setY(0.4);
 
         DCGameOverScreen gameOverScreen = new DCGameOverScreen();

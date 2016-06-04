@@ -1,5 +1,7 @@
 package com.demensdeum.demonscave;
 
+import android.content.Context;
+
 import com.demensdeum.flamesteelengine.FSEGameScoreController;
 import com.demensdeum.flamesteelengine.FSESceneController;
 import com.demensdeum.flamesteelengine.FSESceneControllerDelegate;
@@ -21,10 +23,12 @@ public class DCGameController implements FSESceneControllerDelegate {
     private FSESceneController currentSceneController;
     private Renderer renderer;
     private FSEGameScoreController gameScoreController;
+    private DCMusicPlayerController musicPlayerController;
 
-    public DCGameController(Renderer renderer) {
+    public DCGameController(Context context, Renderer renderer) {
         this.renderer = renderer;
         this.gameScoreController = new FSEGameScoreController();
+        this.musicPlayerController = new DCMusicPlayerController(context);
     }
 
     private void switchCurrentSceneControllerTo(FSESceneController sceneController) {
@@ -57,6 +61,7 @@ public class DCGameController implements FSESceneControllerDelegate {
 
     public void startGame() {
         this.switchStateTo(DCState.demensdeumLogo);
+        this.musicPlayerController.play();
     }
 
     @Override
@@ -76,6 +81,14 @@ public class DCGameController implements FSESceneControllerDelegate {
         else if (currentState == DCState.gameOver) {
             switchStateTo(DCState.ingame);
         }
+    }
+
+    public void onResume() {
+        this.musicPlayerController.resume();
+    }
+
+    public void onStop() {
+        this.musicPlayerController.pause();
     }
 
 }

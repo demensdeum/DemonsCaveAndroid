@@ -4,6 +4,7 @@ import android.util.Log;
 
 import org.rajawali3d.materials.Material;
 import org.rajawali3d.materials.methods.DiffuseMethod;
+import org.rajawali3d.materials.plugins.SpriteSheetMaterialPlugin;
 import org.rajawali3d.materials.textures.ATexture;
 import org.rajawali3d.materials.textures.Texture;
 import org.rajawali3d.primitives.Plane;
@@ -19,10 +20,11 @@ public class FSEObject extends FSEPlane {
     protected boolean isCollides = true;
 
     public FSEObject(float width, float height) {
-        super(width,height,2,2);
+        super(width,height,1,1);
     }
 
-    public FSEObject(int resourceId, float width, float height) {
+    public FSEObject(int resourceId, float width, float height, SpriteSheetMaterialPlugin spriteSheetMaterialPlugin)
+    {
         super(width,height,1,1);
 
         Material material = new Material();
@@ -36,9 +38,18 @@ public class FSEObject extends FSEPlane {
             Log.d("DEBUG", "TEXTURE ERROR");
         }
 
+        if (spriteSheetMaterialPlugin != null) {
+            material.addPlugin(spriteSheetMaterialPlugin);
+            spriteSheetMaterialPlugin.play();
+        }
+
         this.setMaterial(material);
 
         this.setTransparent(true);
+    }
+
+    public FSEObject(int resourceId, float width, float height) {
+        this(resourceId, width, height,null);
     }
 
     public void setLayer(double layer) {
